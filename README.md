@@ -1,10 +1,12 @@
 # Duck Keys
 
-An Android keyboard with six original squeaks, including a high-pitched rubber dog toy, plus a random sound option.
+An Android keyboard with seven squeaks, including a high-pitched rubber dog toy and **Video duck squeak**, plus a random sound option.
 
-[Download Duck Keys 1.2](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.2.apk)
+[Download Duck Keys 1.3](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.3.apk)
 
 Requires Android 8.0 or later. Install the APK, open Duck Keys, then enable and select its keyboard using the two setup buttons.
+
+Version 1.3 adds **Video duck squeak**, the sound from the supplied [Rubber Duck - Sound Effect for editing](https://www.youtube.com/watch?v=v1hzgoEYZQY) clip by Sound Library. The audio was converted to mono PCM and trimmed to its 0.43-second squeak for responsive typing. Its pitch and timing are preserved. The other six sounds are synthesized.
 
 ## Updates
 
