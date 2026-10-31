@@ -2,9 +2,13 @@
 
 An Android keyboard with seven squeaks, including a high-pitched rubber dog toy and **Video duck squeak**, plus a random sound option.
 
-[Download Duck Keys 1.6](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.6.apk)
+[Download Duck Keys 1.7](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.7.apk)
 
 Requires Android 8.0 or later. Install the APK, open Duck Keys, then enable and select its keyboard using the two setup buttons.
+
+Version 1.7 matches the requested Windows Phone photo layout: flat rectangular keys, narrow gaps, uppercase letter legends, a staggered middle row, wide Shift and Backspace, and the bottom row **&123 · smiley · comma · space · period · Enter**. Light mode uses pale keys on a blue background; a dark variant follows system night mode. The swipe trail is amber.
+
+The smiley opens a compact 20-emoji panel; **ABC** returns to letters. Sound/mute, the cursor dot, keyboard switching, and the settings ellipsis sit in the slim command row below the keys. Email/URL punctuation and editor-specific Enter actions remain available. Uppercase legends do not force uppercase typing: Shift, Caps Lock, and sentence capitalization still determine the text entered. All typing and sound features from version 1.6 remain.
 
 Version 1.6 adds Windows 10 Mobile-inspired typing behavior while keeping the Android appearance and duck sounds:
 
