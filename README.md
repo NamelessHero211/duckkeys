@@ -2,9 +2,13 @@
 
 An Android keyboard with seven squeaks, including a high-pitched dog-toy squeak, **Video duck squeak**, and random selection.
 
-[Download Duck Keys 2.1](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.1.apk)
+[Download Duck Keys 2.2](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.2.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.2: optional key vibration
+
+**Key vibration** is on by default and can be disabled under **Typing and editing** in the app. Each new finger press requests Android's keyboard-tap haptic, including overlapping fingers. There is no queued vibration playback or extra release pulse. It follows system touch-feedback settings and depends on your phone's vibration motor. This uses Android's [recommended View haptic feedback](https://developer.android.com/develop/ui/views/haptics/haptic-feedback), without overriding system preferences or adding a vibration permission. The haptic on/off dispatch check and all three overlapping-touch tests pass. Physical vibration feel still needs phone feedback.
 
 ## Version 2.1: fast multi-finger typing and sound recovery
 
