@@ -2,9 +2,29 @@
 
 An Android keyboard with seven squeaks, including a high-pitched dog-toy squeak, **Video duck squeak**, and random selection.
 
-[Download Duck Keys 2.2](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.2.apk)
+[Download Duck Keys 2.3](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.3.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.3: personal autocorrect and keyboard controls
+
+**Smarter, local autocorrect:** the personal dictionary learns word frequency, suggestions you explicitly choose, and corrections you undo. Repeated words gain priority in completions; familiar custom words can be corrected from nearby misspellings. Choosing the same one-edit correction twice establishes a preference. Undoing a correction protects that spelling until you explicitly teach another correction or clear the dictionary. Automatic replacements do not create replacement rules on their own. Corrections apply at a word boundary, including Enter/Send. This is English spelling assistance, not a grammar model.
+
+**Learn my words and corrections** is on by default. Disable it or use **Clear learned words and corrections** in the app. Personalization is disabled in password, email, URL and numeric fields, translation mode, fields requesting no suggestions, and editors setting Android's no-personalized-learning flag. Only bounded word counts and correction/undo preferences are retained privately on the phone: up to 512 words, 128 correction rules and 128 protected spellings. No full messages are stored or sent for learning. Dictation transcripts do not train the personal dictionary.
+
+Base correction results use a fixed 512-slot cache, and common short-prefix completions are indexed at dictionary load. Personal typo candidates are indexed too. Dictionary loading, suggestion ranking and delayed/coalesced atomic saves run outside the typing path. Word-boundary correction uses the cache and bounded indexed lookups. Learning uses bounded in-memory updates; it never waits for a file write to enter a key. Previous multi-finger input and bounded audio scheduling remain.
+
+**Volume at top left:** tap the volume icon to open a 0–100% squeak slider and a Typing squeaks switch. This adjusts Duck Keys independently of other apps; the phone's media volume remains the overall output limit. Release the slider to preview the selected squeak.
+
+**Font pinch:** place two fingers over the letter keys, then pinch inward for smaller letter/number/symbol text or spread outward for larger text. A deliberate span change starts resizing; normal overlapping presses stay immediate. Initial provisional letters are removed when a pinch is recognized. The range is 75–140%, with text fitted to its key. The chosen size is remembered; **Reset key font size** in the app restores the default. The gesture is available on the normal English letter layout, not password/special fields or translation mode. It changes text size, not key size.
+
+**Bottom gap:** the keys are raised with clear padding above the navigation area (28 dp portrait, 12 dp landscape). The microphone is at the **top**, alongside the toolbar, as requested.
+
+**Microphone dictation:** first use opens **Set up microphone dictation** in the app. Read the speech-provider notice and enable microphone permission. Return to your text field, hold the top microphone, speak, and release. The recognized text appears for review; **Insert** puts it into the current draft, and **Discard** removes it. It never sends the message. Accessibility click can start/stop a session without holding. Sessions stop after 15 seconds and time out after 25 seconds; hiding the keyboard or changing fields cancels pending speech. Duck squeaks stop during recording.
+
+Dictation **cannot verify that speech is only yours or exclude all nearby voices**. No voiceprint or speaker-verification model is included. Hold-to-talk and review avoid automatic insertion of another speaker's transcript. Android on-device recognition is used when available; otherwise the phone's configured speech provider may process audio online. Offline preference is requested, but the provider controls support. Duck Keys does not save speech recordings or transcripts. Speech availability, language models, connection and accuracy depend on the phone/provider. Dictation stays off in password/special fields, translation mode and no-personalization fields.
+
+Validation passed for personal-word learning, explicit corrections, undo preferences, round-trip/clear/size bounds and word-boundary correction; 90,000 typed characters and 40 synthetic swipe paths; private-field policy and background save/clear guards; overlapping touch, haptics and pinch classification; actual IME-view bottom spacing, microphone placement, pinch rollback/persistence and review-before-insert; simulated speech result/cancellation behavior. These are host/Robolectric checks, not physical-phone latency, acoustic recognition, speaker isolation or tactile tests. The Material volume popup uses native Android widgets; its animated SeekBar could not be rendered in this workspace's legacy framework test setup.
 
 ## Version 2.2: optional key vibration
 
@@ -20,7 +40,7 @@ Squeaks now use **media volume**, plus Duck Keys' own volume slider. The selecte
 
 Android framework tests cover three simultaneous keys across rows, two fingers on the same key, cancellation, accessibility click availability and 2,000 rapid overlapping presses without lost/duplicate text. Existing key-symbol regression tests also pass. A SoundPool framework test verifies the video sample selection/playback and recovery after a simulated failed load. The original WAV is non-silent and unchanged. These are simulated Android touch-dispatch tests, not a measurement of your phone's speed or audible output.
 
-Version 2.0 reduces per-key editor batching and suggestion-strip redraws. Dictionary loading and suggestions run on a worker. English autocorrect now uses an indexed dictionary for more misspellings, including nearby-key errors and transpositions, and applies at a word boundary. Backspace immediately after a correction restores the original spelling. Autocorrect remains optional in the app and **ellipsis → Autocorrect**. Valid words and ambiguous cases are left alone; this is a conservative spelling engine, without grammar or personalized prediction.
+Version 2.0 reduces per-key editor batching and suggestion-strip redraws. Dictionary loading and suggestions run on a worker. English autocorrect now uses an indexed dictionary for more misspellings, including nearby-key errors and transpositions, and applies at a word boundary. Backspace immediately after a correction restores the original spelling. Autocorrect remains optional in the app and **ellipsis → Autocorrect**. Valid words and ambiguous cases are left alone; this is a conservative spelling engine, without grammar prediction. Version 2.3 adds personal word preferences.
 
 ## Inline Yandex translation
 
@@ -58,7 +78,7 @@ The update channel is [update.json](update.json). Downloads must use HTTPS, matc
 
 ## Privacy
 
-No ads, analytics, or saved typing history. Normal typing, suggestions and autocorrect stay local. GitHub receives update metadata and APK download requests, not your typing. While the inline translator is active, its source text is automatically sent to Yandex Cloud after a short typing pause. Your API key is encrypted using Android Keystore in private app storage. Source text and translation history are not saved by Duck Keys. Yandex handles translation requests under its own policies. The separate website option opens the text in a Yandex HTTPS URL through your browser, whose history and policies also apply.
+No ads, analytics, or full-message typing history. Normal typing, suggestions and autocorrect stay local. With personal learning enabled, a bounded set of words, usage counts and correction/undo preferences is saved in private app storage, excluded from Android backup. Turn it off or clear it in the app. Speech requires setup and microphone permission; on-device recognition is preferred, otherwise the configured provider may receive audio. Duck Keys does not save recordings or transcripts. GitHub receives update metadata and APK download requests, not your typing. While the inline translator is active, its source text is automatically sent to Yandex Cloud after a short typing pause. Your API key is encrypted using Android Keystore in private app storage. Source text and translation history are not saved by Duck Keys. Yandex handles translation requests under its own policies. The separate website option opens the text in a Yandex HTTPS URL through your browser, whose history and policies also apply.
 
 ## Publishing a future version
 
