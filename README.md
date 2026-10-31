@@ -2,15 +2,19 @@
 
 An Android keyboard with seven squeaks, including a high-pitched rubber dog toy and **Video duck squeak**, plus a random sound option.
 
-[Download Duck Keys 1.8](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.8.apk)
+[Download Duck Keys 1.9](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.9.apk)
 
 Requires Android 8.0 or later. Install the APK, open Duck Keys, then enable and select its keyboard using the two setup buttons.
 
-Version 1.8 fixes the missing Shift, Backspace, smiley and Return symbols by drawing these key symbols directly on the canvas. Other icon keys also draw without the TextView text-rendering pass. The photo-inspired rectangular layout remains.
+Version 1.9 addresses the confirmed blank key symbols in the phone screenshot. Shift, Caps Lock, Backspace, smiley and Return now use Android's normal text renderer. The app checks whether the font supports each symbol and uses a readable Shift/CAPS/Del/:)/Enter label when necessary. Remaining icon drawing compensates for TextView's internal scroll offset, and icon keys disable horizontal text scrolling. The bottom-left smiley slot is now **Tr**, as requested. Open Emoji from the **ellipsis → Emoji** menu, and use **ABC** to return to letters. The separate Tr toolbar button has been removed. The remaining photo-inspired layout, typing behavior, translator and sounds remain.
+
+The Android widget regression test reproduced the old 524,228-pixel horizontal text scroll. The replacement passed checks for nonblank fallback text, zero icon-text scroll, in-button label bounds and native text-draw calls at narrow key sizes, including Caps Lock. Remaining drawable icons passed recorded viewport-coordinate checks with zero, positive and negative content scroll. These are Robolectric Android 9 / legacy-graphics checks, not pixel screenshots or a physical-device test. Native pixel rendering was unavailable because its dependency download was rate-limited.
+
+Version 1.8 attempted a custom canvas fix; the user's phone screenshot showed that it did not resolve the missing symbols. Version 1.9 replaces that path for the affected keys.
 
 **Autocorrect is optional:** turn it on/off near the top of the app, or use the keyboard's **ellipsis → Autocorrect** menu. The same menu offers a separate word-suggestions switch. This is the existing conservative English common-typo correction, with immediate Backspace undo; it does not send text to a spelling service.
 
-**Yandex Translate (no key):** tap **Tr** in the keyboard's bottom toolbar, or **Yandex Translate** in the app. Choose source/target languages, enter up to 2,000 characters, and tap **Open Yandex Translate**. Source-language detection and 20 target languages are offered. The text and language choices open on Yandex's HTTPS website in your browser. Copy the translated result there, return to your app, and paste it. This is a browser handoff, not an embedded translation API or automatic insertion. No API key, cloud account setup, or bundled credentials are used. A **Copy text** fallback is provided if browser text prefill fails. Translation availability depends on your browser, connection, and Yandex.
+**Yandex Translate (no key):** tap **Tr** in the keyboard's bottom-left key row, or **Yandex Translate** in the app. Choose source/target languages, enter up to 2,000 characters, and tap **Open Yandex Translate**. Source-language detection and 20 target languages are offered. The text and language choices open on Yandex's HTTPS website in your browser. Copy the translated result there, return to your app, and paste it. This is a browser handoff, not an embedded translation API or automatic insertion. No API key, cloud account setup, or bundled credentials are used. A **Copy text** fallback is provided if browser text prefill fails. Translation availability depends on your browser, connection, and Yandex.
 
 If ordinary text is selected when you explicitly tap **Tr**, it is locally prefilled into the translation screen for review. Nothing is sent until **Open Yandex Translate** is tapped. Password/special fields are not read for prefill. Only language choices are remembered; Duck Keys does not save the translation text. Browser/Yandex history and data handling follow their own settings and policies. Normal typing stays local.
 
