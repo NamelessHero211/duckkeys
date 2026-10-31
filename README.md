@@ -1,10 +1,24 @@
 # Duck Keys
 
-An Android keyboard with seven squeaks, including a high-pitched dog-toy squeak, **Video duck squeak**, and random selection.
+An Android keyboard with eight typing sounds, including duck squeaks, a high-pitched dog toy, **Video duck squeak**, **Uwu (video)**, and random selection.
 
-[Download Duck Keys 2.4](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.4.apk)
+[Download Duck Keys 2.5](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.5.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.5: Android-style live dictation and the video uwu sound
+
+**Tap to dictate:** tap the top microphone once, wait for Ready, and speak. Partial words appear directly in your message draft. Tap again to stop, or let the speech service finish at a pause. The final transcript replaces the partial draft without duplicating it and adds a trailing space. Duck Keys never sends the message. This follows the tap-and-dictate flow in the supplied [Android example by Rebecca S](https://www.youtube.com/watch?v=GIVF4_dHw10); it is an independent keyboard using Android's speech service, not Motorola's proprietary keyboard.
+
+**Review mode is optional:** turn on **Review dictated text before inserting** to keep the previous Insert/Discard workflow. It is off by default for the native-style flow. In live mode, stopping/hiding/changing fields cancels recognition and keeps any already-visible partial draft; it does not delete other text. Typing or deleting manually stops dictation so later partials cannot overwrite your edits. Provider silence detection may end an utterance sooner; a session requests stop after 60 seconds and times out after 75 seconds. There is no always-listening or automatic restart loop.
+
+**Personal vocabulary:** with personal learning and **Use learned words for dictation** enabled, up to 32 familiar custom words can be supplied as on-device vocabulary hints on Android 13+, where the recognizer supports them. The word list is never attached to the system/online fallback request. Locally, close transcript alternatives can prefer repeatedly used custom words or explicit correction preferences; existing valid dictionary words are protected from fuzzy replacement. Teach a name by typing it several times. Turning learning off or clearing the personal dictionary removes this influence. This adapts vocabulary choices; Duck Keys cannot retrain the provider's acoustic model or verify a speaker's identity.
+
+Supported Android 13+ providers are asked for quality formatting/punctuation. Providers may ignore optional extras or omit partial results; final dictation still works. On-device preference, the single system-service fallback, specific error codes and phone-settings shortcuts from 2.4 remain. Online recognition may process audio through the configured provider after microphone setup consent. Nearby speakers may still be transcribed; optional review mode helps you check the result. Duck Keys saves no speech recordings or transcripts, and does not learn automatically from uncorrected transcripts.
+
+**Uwu (video)** is the actual voice from the supplied [Uwu sound effect](https://www.youtube.com/watch?v=4-LAJosnOKY) by Jacobwalton10. Leading/trailing silence was removed, leaving a 0.63-second mono PCM clip, with original pitch and timing and modest gain/edge fades. Select it in the app or top sound picker. Surprise me can include it. All previous clips remain byte-for-byte unchanged. As with other sounds, extremely fast typing can merge or shorten overlapping playback; sound requests cannot create a typing backlog.
+
+Validation: host learning/vocabulary-choice and live-composition tests; ten Android framework tests for partial/final replacement in the actual IME, optional review, provider fallback/cancellation/readiness, on-device-only vocabulary extras, formatting extras, existing keyboard layout/error display, original duck playback/recovery and uwu sample selection. Physical-phone acoustic accuracy, provider support for hints/punctuation, audible output and latency still need feedback. The example transcript and audio preparation were inspected locally; neither is bundled as a full video.
 
 ## Version 2.4: microphone recovery and useful errors
 
@@ -70,7 +84,7 @@ The layout follows the requested Windows Phone photo: rectangular keys, staggere
 
 English swipe typing, suggestions, cursor control, Caps Lock, sentence capitalization, double-space period and long-press characters remain. Each typing aid has its own setting. Recognition uses a bundled vocabulary rather than Microsoft's Word Flow engine. The dictionary attribution is below.
 
-Text enters on touch-down. Audio has a separate bounded worker, at most four overlapping sounds, and no backlog of old squeaks during button spamming. Extremely rapid presses may merge squeaks. The **Video duck squeak** comes from the user-supplied [Sound Library clip](https://www.youtube.com/watch?v=v1hzgoEYZQY), trimmed to its 0.43-second squeak; the other six sounds are synthesized.
+Text enters on touch-down. Audio has a separate bounded worker, at most four overlapping sounds, and no backlog of old squeaks during button spamming. Extremely rapid presses may merge squeaks. The **Video duck squeak** comes from the user-supplied [Sound Library clip](https://www.youtube.com/watch?v=v1hzgoEYZQY), trimmed to its 0.43-second squeak; the six original duck/toy sounds are synthesized.
 
 ## Verification and limits
 
@@ -88,7 +102,7 @@ The update channel is [update.json](update.json). Downloads must use HTTPS, matc
 
 ## Privacy
 
-No ads, analytics, or full-message typing history. Normal typing, suggestions and autocorrect stay local. With personal learning enabled, a bounded set of words, usage counts and correction/undo preferences is saved in private app storage, excluded from Android backup. Turn it off or clear it in the app. Speech requires setup and microphone permission; on-device recognition is preferred, otherwise the configured provider may receive audio. Duck Keys does not save recordings or transcripts. GitHub receives update metadata and APK download requests, not your typing. While the inline translator is active, its source text is automatically sent to Yandex Cloud after a short typing pause. Your API key is encrypted using Android Keystore in private app storage. Source text and translation history are not saved by Duck Keys. Yandex handles translation requests under its own policies. The separate website option opens the text in a Yandex HTTPS URL through your browser, whose history and policies also apply.
+No ads, analytics, or full-message typing history. Normal typing, suggestions and autocorrect stay local. With personal learning enabled, a bounded set of words, usage counts and correction/undo preferences is saved in private app storage, excluded from Android backup. Turn it off or clear it in the app. Learned custom words may be offered as on-device speech hints, and transcript alternatives are ranked locally; learned word lists are not attached to online speech requests. Speech requires setup and microphone permission; on-device recognition is preferred, otherwise the configured provider may receive audio. Duck Keys does not save recordings or transcripts. GitHub receives update metadata and APK download requests, not your typing. While the inline translator is active, its source text is automatically sent to Yandex Cloud after a short typing pause. Your API key is encrypted using Android Keystore in private app storage. Source text and translation history are not saved by Duck Keys. Yandex handles translation requests under its own policies. The separate website option opens the text in a Yandex HTTPS URL through your browser, whose history and policies also apply.
 
 ## Publishing a future version
 
