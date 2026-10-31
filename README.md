@@ -2,9 +2,19 @@
 
 An Android keyboard with seven squeaks, including a high-pitched dog-toy squeak, **Video duck squeak**, and random selection.
 
-[Download Duck Keys 2.3](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.3.apk)
+[Download Duck Keys 2.4](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.4.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.4: microphone recovery and useful errors
+
+If the on-device speech service reports an unavailable language/model, a provider failure, a busy recognizer or a client error, Duck Keys tries the configured phone speech service once. The fallback chooses its own supported language and online/offline route; it is no longer forced into offline mode or the phone locale. Existing microphone setup consent and review-before-insert still apply. There is no automatic retry loop, and microphone permission/audio failures are not retried with another provider.
+
+Releasing the mic during startup no longer sends stopListening before the service is ready. The stop request is queued until readiness, with a brief 250ms minimum ready interval. Hold the microphone, wait for **Ready**, then speak and release. A 25-second overall deadline still cancels stalled sessions. Old callbacks from a failed recognizer cannot overwrite a new attempt.
+
+Speech errors now stay above the keys with the provider type, numeric error code and specific guidance for network, microphone/privacy-switch access, missing language models, busy services or permission failures. The app adds **Phone speech settings** and **Duck Keys app permissions** shortcuts. If speech still fails, report the complete message and code; the original generic toast did not identify which provider error occurred.
+
+Six Android framework tests passed for one-time local-to-system fallback, unconstrained fallback intent, stale-result suppression, early release/readiness, non-retried permission failures, existing results/cancellation and IME review insertion. Physical-device recognition is not available in the workspace, so this update addresses identified failure paths without claiming a confirmed diagnosis of the reported phone error.
 
 ## Version 2.3: personal autocorrect and keyboard controls
 
@@ -22,7 +32,7 @@ Base correction results use a fixed 512-slot cache, and common short-prefix comp
 
 **Microphone dictation:** first use opens **Set up microphone dictation** in the app. Read the speech-provider notice and enable microphone permission. Return to your text field, hold the top microphone, speak, and release. The recognized text appears for review; **Insert** puts it into the current draft, and **Discard** removes it. It never sends the message. Accessibility click can start/stop a session without holding. Sessions stop after 15 seconds and time out after 25 seconds; hiding the keyboard or changing fields cancels pending speech. Duck squeaks stop during recording.
 
-Dictation **cannot verify that speech is only yours or exclude all nearby voices**. No voiceprint or speaker-verification model is included. Hold-to-talk and review avoid automatic insertion of another speaker's transcript. Android on-device recognition is used when available; otherwise the phone's configured speech provider may process audio online. Offline preference is requested, but the provider controls support. Duck Keys does not save speech recordings or transcripts. Speech availability, language models, connection and accuracy depend on the phone/provider. Dictation stays off in password/special fields, translation mode and no-personalization fields.
+Dictation **cannot verify that speech is only yours or exclude all nearby voices**. No voiceprint or speaker-verification model is included. Hold-to-talk and review avoid automatic insertion of another speaker's transcript. Android on-device recognition is used when available; otherwise the phone's configured speech provider may process audio online. On-device recognition is preferred; the system fallback chooses its configured language and available online/offline route. Duck Keys does not save speech recordings or transcripts. Speech availability, language models, connection and accuracy depend on the phone/provider. Dictation stays off in password/special fields, translation mode and no-personalization fields.
 
 Validation passed for personal-word learning, explicit corrections, undo preferences, round-trip/clear/size bounds and word-boundary correction; 90,000 typed characters and 40 synthetic swipe paths; private-field policy and background save/clear guards; overlapping touch, haptics and pinch classification; actual IME-view bottom spacing, microphone placement, pinch rollback/persistence and review-before-insert; simulated speech result/cancellation behavior. These are host/Robolectric checks, not physical-phone latency, acoustic recognition, speaker isolation or tactile tests. The Material volume popup uses native Android widgets; its animated SeekBar could not be rendered in this workspace's legacy framework test setup.
 
