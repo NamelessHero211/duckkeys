@@ -2,9 +2,13 @@
 
 An Android keyboard with seven squeaks, including a high-pitched rubber dog toy and **Video duck squeak**, plus a random sound option.
 
-[Download Duck Keys 1.4](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.4.apk)
+[Download Duck Keys 1.5](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.5.apk)
 
 Requires Android 8.0 or later. Install the APK, open Duck Keys, then enable and select its keyboard using the two setup buttons.
+
+Version 1.5 gives the keyboard a native Android Material-style appearance: staggered QWERTY rows, a pill-shaped Space bar, flat keys with ripple feedback, vector icons, and an accent-colored Enter/Search/Send/Done key. It follows system light/dark mode and uses Android 12+ system palette colors when available. Landscape uses shorter keys, and the navigation bar appearance follows the keyboard theme where Android permits it.
+
+The toolbar provides a mute button, a sound-selection menu, and settings. Numeric fields get a spacious four-column keypad; phone fields include `+`, `*`, and `#`. Email and URL text fields get convenient `@` and `/` punctuation keys. The cached key views and background audio scheduling from version 1.4 remain in use. This release changes the keyboard's appearance and controls; it does not add predictive text or autocorrect.
 
 Version 1.4 improves rapid typing. Keys submit text on touch-down, sound playback runs on a separate worker, and Shift updates existing keys without rebuilding the keyboard. Delete uses Android's selection updates rather than synchronously asking the editor for selected text on every press. Sound settings are cached and at most four sounds overlap.
 
