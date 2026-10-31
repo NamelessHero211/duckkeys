@@ -2,9 +2,19 @@
 
 An Android keyboard with eight typing sounds, including duck squeaks, a high-pitched dog toy, **Video duck squeak**, **Uwu (video)**, and random selection.
 
-[Download Duck Keys 2.5](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.5.apk)
+[Download Duck Keys 2.6](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.6.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.6: tap microphone and silence cutoff
+
+Tap and release the top microphone to start dictation; no hold is needed. Tap again to stop manually. The microphone now uses Android's normal button-click path, so releasing your finger does not stop speech recognition.
+
+Duck Keys requests stop after 10 seconds without a speech-start event or new recognized words. Background volume readings and repeated identical partial transcripts do not extend the timer. The phone speech service is also asked for a 10-second silence window, but may end recognition sooner. This uses the provider's speech detection; it cannot identify whose voice is speaking.
+
+The microphone indicator turns off when listening ends, while final text is processed. If the provider does not finish within eight more seconds, the session is cancelled and any visible draft is kept. A service that never becomes ready is cancelled after 10 seconds. Existing 60-second session cap and single provider fallback remain.
+
+Validation: eleven targeted Android framework tests passed, including a real tap/release through the keyboard view, live partial/final text, 10-second cutoff, new-word timer reset, duplicate/noise rejection, cancellation and provider fallback. APK signing and alignment verified. Physical-phone microphone behavior still needs feedback.
 
 ## Version 2.5: Android-style live dictation and the video uwu sound
 
