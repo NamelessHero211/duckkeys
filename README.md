@@ -2,9 +2,17 @@
 
 An Android keyboard with seven squeaks, including a high-pitched rubber dog toy and **Video duck squeak**, plus a random sound option.
 
-[Download Duck Keys 1.7](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.7.apk)
+[Download Duck Keys 1.8](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-1.8.apk)
 
 Requires Android 8.0 or later. Install the APK, open Duck Keys, then enable and select its keyboard using the two setup buttons.
+
+Version 1.8 fixes the missing Shift, Backspace, smiley and Return symbols by drawing these key symbols directly on the canvas. Other icon keys also draw without the TextView text-rendering pass. The photo-inspired rectangular layout remains.
+
+**Autocorrect is optional:** turn it on/off near the top of the app, or use the keyboard's **ellipsis → Autocorrect** menu. The same menu offers a separate word-suggestions switch. This is the existing conservative English common-typo correction, with immediate Backspace undo; it does not send text to a spelling service.
+
+**Yandex Translate (no key):** tap **Tr** in the keyboard's bottom toolbar, or **Yandex Translate** in the app. Choose source/target languages, enter up to 2,000 characters, and tap **Open Yandex Translate**. Source-language detection and 20 target languages are offered. The text and language choices open on Yandex's HTTPS website in your browser. Copy the translated result there, return to your app, and paste it. This is a browser handoff, not an embedded translation API or automatic insertion. No API key, cloud account setup, or bundled credentials are used. A **Copy text** fallback is provided if browser text prefill fails. Translation availability depends on your browser, connection, and Yandex.
+
+If ordinary text is selected when you explicitly tap **Tr**, it is locally prefilled into the translation screen for review. Nothing is sent until **Open Yandex Translate** is tapped. Password/special fields are not read for prefill. Only language choices are remembered; Duck Keys does not save the translation text. Browser/Yandex history and data handling follow their own settings and policies. Normal typing stays local.
 
 Version 1.7 matches the requested Windows Phone photo layout: flat rectangular keys, narrow gaps, uppercase letter legends, a staggered middle row, wide Shift and Backspace, and the bottom row **&123 · smiley · comma · space · period · Enter**. Light mode uses pale keys on a blue background; a dark variant follows system night mode. The swipe trail is amber.
 
@@ -47,7 +55,7 @@ The update channel is [update.json](update.json). Downloads must use HTTPS, matc
 
 ## Privacy
 
-No ads, analytics, or typing history. Internet access is used only for update metadata and APK downloads from GitHub. Typed text is never sent to the update server. GitHub receives normal update download requests.
+No ads, analytics, or typing history. Duck Keys uses Internet access for update metadata and APK downloads from GitHub. Ordinary typed text is never sent to the update server. GitHub receives normal update download requests. When you explicitly choose translation, the text you submit is included in a Yandex HTTPS URL opened by your browser; Yandex and the browser handle that text according to their own policies. No background translation is performed.
 
 ## Publishing a future version
 
