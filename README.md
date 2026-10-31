@@ -2,9 +2,19 @@
 
 An Android keyboard with seven squeaks, including a high-pitched dog-toy squeak, **Video duck squeak**, and random selection.
 
-[Download Duck Keys 2.0](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.0.apk)
+[Download Duck Keys 2.1](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.1.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.1: fast multi-finger typing and sound recovery
+
+The mute, cursor controller, keyboard switch, sound picker and settings controls now sit in a toolbar above the suggestion strip and keys, clearing the bottom edge.
+
+Character keys now accept each new finger immediately, including two fingers landing on the same key. Keys across rows remain independently pressed and release in either order. Touch input calls its action directly; accessibility click actions remain available separately. A static pressed highlight replaces overlapping ripple animations. Suggestion updates wait for a 45 ms typing pause, and ordinary keys skip unnecessary deferred-action allocations. Text is not rate-limited by the sound scheduler.
+
+Squeaks now use **media volume**, plus Duck Keys' own volume slider. The selected sample is loaded first using explicit resource IDs. Failed or stuck sample loads can retry, opening the keyboard resumes paused audio, and a failed native playback can trigger a bounded background rebuild. The original Video duck squeak recording is unchanged. Audio still uses four streams and a one-slot latest-request queue; extremely rapid keys can merge squeaks rather than building delayed audio.
+
+Android framework tests cover three simultaneous keys across rows, two fingers on the same key, cancellation, accessibility click availability and 2,000 rapid overlapping presses without lost/duplicate text. Existing key-symbol regression tests also pass. A SoundPool framework test verifies the video sample selection/playback and recovery after a simulated failed load. The original WAV is non-silent and unchanged. These are simulated Android touch-dispatch tests, not a measurement of your phone's speed or audible output.
 
 Version 2.0 reduces per-key editor batching and suggestion-strip redraws. Dictionary loading and suggestions run on a worker. English autocorrect now uses an indexed dictionary for more misspellings, including nearby-key errors and transpositions, and applies at a word boundary. Backspace immediately after a correction restores the original spelling. Autocorrect remains optional in the app and **ellipsis → Autocorrect**. Valid words and ambiguous cases are left alone; this is a conservative spelling engine, without grammar or personalized prediction.
 

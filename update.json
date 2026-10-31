@@ -1,6 +1,6 @@
 {
-  "apkUrl": "https://raw.githubusercontent.com/NamelessHero211/duckkeys/main/DuckKeys-2.0.apk",
-  "versionCode": 11,
-  "versionName": "2.0",
-  "sha256": "42858ef16255b151cb895dae55a3464374c4b10f4ce09fe15725ad61949a4175"
+  "sha256": "57e35c51b05e56a3cc5169cc612e51f78bfc62afba07cb751410ed07c40a0516",
+  "versionCode": 12,
+  "versionName": "2.1",
+  "apkUrl": "https://raw.githubusercontent.com/NamelessHero211/duckkeys/main/DuckKeys-2.1.apk"
 }
