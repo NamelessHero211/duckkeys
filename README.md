@@ -2,9 +2,13 @@
 
 An Android keyboard with eight typing sounds, including duck squeaks, a high-pitched dog toy, **Video duck squeak**, **Uwu (video)**, and random selection.
 
-[Download Duck Keys 2.6](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.6.apk)
+[Download Duck Keys 2.7](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.7.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
+
+## Version 2.7: independent squeak volume
+
+Typing sounds now use Android's sonification/system-sounds audio stream, separate from media playback, so changing music or video volume does not directly change the squeak level. Adjust the Duck Keys percentage slider to set its own sound level. Android still applies system master volume and mute controls, so those can silence any app.
 
 ## Version 2.6: tap microphone and silence cutoff
 
