@@ -7,9 +7,6 @@ workflows:
       app_store_connect: DuckKeysAppStoreConnect
     environment:
       xcode: latest
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.namelesshero.duckkeys
       vars:
         IOS_SOURCE_DIR: DuckKeys-iOS
         XCODE_PROJECT: DuckKeys.xcodeproj
@@ -26,10 +23,20 @@ workflows:
             ''|*[!0-9]*) LATEST_BUILD_NUMBER=0 ;;
           esac
           agvtool new-version -all "$((LATEST_BUILD_NUMBER + 1))"
-      - name: Apply App Store signing profiles
+      - name: Initialize signing keychain
+        script: keychain initialize
+      - name: Fetch app and keyboard extension signing profiles
         script: |
-          cd "$CM_BUILD_DIR/$IOS_SOURCE_DIR"
-          xcode-project use-profiles
+          app-store-connect fetch-signing-files com.namelesshero.duckkeys \
+            --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files com.namelesshero.duckkeys.keyboard \
+            --type IOS_APP_STORE --create
+      - name: Install signing certificate
+        script: keychain add-certificates
+      - name: Apply profiles to Xcode project
+        script: |
+          xcode-project use-profiles \
+            --project "$CM_BUILD_DIR/$IOS_SOURCE_DIR/$XCODE_PROJECT"
       - name: Build signed IPA
         script: |
           cd "$CM_BUILD_DIR/$IOS_SOURCE_DIR"
