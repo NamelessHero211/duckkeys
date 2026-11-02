@@ -14,7 +14,7 @@ workflows:
         APP_STORE_APPLE_ID: "6829620182"
     scripts:
       - name: Unpack iOS Xcode source
-        script: unzip -q DuckKeys-iOS-Xcode.zip -d "$CM_BUILD_DIR"
+        script: unzip -oq DuckKeys-iOS-Xcode.zip -d "$CM_BUILD_DIR"
       - name: Increment build number
         script: |
           cd "$CM_BUILD_DIR/$IOS_SOURCE_DIR"
