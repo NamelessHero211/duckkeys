@@ -46,6 +46,13 @@ workflows:
                   marker = "<key>CFBundlePackageType</key><string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>"
                   text = text.replace(marker, marker + "\n<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>")
                   plist.write_text(text)
+          app_plist = root / "DuckKeys" / "Info.plist"
+          text = app_plist.read_text()
+          marker = "<string>UIInterfaceOrientationPortrait</string>"
+          upside_down = "<string>UIInterfaceOrientationPortraitUpsideDown</string>"
+          if upside_down not in text:
+              text = text.replace(marker, marker + upside_down, 1)
+              app_plist.write_text(text)
           PY
       - name: Increment build number
         script: |
