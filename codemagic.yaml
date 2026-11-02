@@ -38,7 +38,10 @@ workflows:
         script: keychain add-certificates
       - name: Apply profiles to Xcode project
         script: |
+          pod --version
+          ruby -e 'require "xcodeproj"; puts Xcodeproj::VERSION'
           xcode-project use-profiles \
+            --code-signing-setup-verbose-logging \
             --project "$CM_BUILD_DIR/$IOS_SOURCE_DIR/$XCODE_PROJECT"
       - name: Build signed IPA
         script: |
