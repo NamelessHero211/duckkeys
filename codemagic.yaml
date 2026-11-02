@@ -18,6 +18,25 @@ workflows:
     scripts:
       - name: Unpack iOS Xcode source
         script: unzip -oq DuckKeys-iOS-Xcode.zip -d "$CM_BUILD_DIR"
+      - name: Repair Xcode project syntax
+        script: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          project = Path(os.environ["CM_BUILD_DIR"]) / "DuckKeys-iOS" / "DuckKeys.xcodeproj" / "project.pbxproj"
+          config_ids = (
+              "500000000000000000000021",
+              "500000000000000000000022",
+              "500000000000000000000031",
+              "500000000000000000000032",
+          )
+          lines = project.read_text().splitlines()
+          for index, line in enumerate(lines):
+              if any(line.lstrip().startswith(config_id + " ") for config_id in config_ids):
+                  if line.rstrip().endswith("}"):
+                      lines[index] = line + ";"
+          project.write_text("\n".join(lines) + "\n")
+          PY
       - name: Increment build number
         script: |
           cd "$CM_BUILD_DIR/$IOS_SOURCE_DIR"
@@ -38,10 +57,7 @@ workflows:
         script: keychain add-certificates
       - name: Apply profiles to Xcode project
         script: |
-          pod --version
-          ruby -e 'require "xcodeproj"; puts Xcodeproj::VERSION'
           xcode-project use-profiles \
-            --code-signing-setup-verbose-logging \
             --project "$CM_BUILD_DIR/$IOS_SOURCE_DIR/$XCODE_PROJECT"
       - name: Build signed IPA
         script: |
