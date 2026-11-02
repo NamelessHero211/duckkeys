@@ -4,7 +4,7 @@ The repository contains the iOS Xcode project in `DuckKeys-iOS-Xcode.zip` and a 
 
 ## Codemagic configuration
 
-The repository is connected to Codemagic as a public Git URL. The workflow uses the `DuckKeysAppStoreConnect` Developer Portal integration, which must contain an App Store Connect API key with App Manager access. Keep the private `.p8` file in Codemagic; never commit it to GitHub.
+The repository is connected to Codemagic as a public Git URL. The workflow uses the `DuckKeysAppStoreConnect` Developer Portal integration and the `duckkeys-signing` secret variable group. The integration contains an App Store Connect API key with App Manager access, and the group stores the RSA `CERTIFICATE_PRIVATE_KEY`. Keep both secrets in Codemagic; never commit them to GitHub.
 
 The workflow increments the iOS build number using App Store Connect, fetches profiles for `com.namelesshero.duckkeys` and `com.namelesshero.duckkeys.keyboard`, installs signing certificates, and uploads the IPA. Start `duckkeys-testflight` on the `main` branch from Codemagic.
 
