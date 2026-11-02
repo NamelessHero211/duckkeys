@@ -18,7 +18,7 @@ workflows:
     scripts:
       - name: Unpack iOS Xcode source
         script: unzip -oq DuckKeys-iOS-Xcode.zip -d "$CM_BUILD_DIR"
-      - name: Repair Xcode project syntax
+      - name: Repair Xcode source metadata and SDK compatibility
         script: |
           python3 - <<'PY'
           import os
@@ -40,6 +40,12 @@ workflows:
           keyboard = root / "DuckKeysKeyboard" / "KeyboardViewController.swift"
           source = keyboard.read_text()
           keyboard.write_text(source.replace("key.multipleTouchEnabled = true;", "key.isMultipleTouchEnabled = true;"))
+          for plist in (root / "DuckKeys" / "Info.plist", root / "DuckKeysKeyboard" / "Info.plist"):
+              text = plist.read_text()
+              if "<key>CFBundleExecutable</key>" not in text:
+                  marker = "<key>CFBundlePackageType</key><string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>"
+                  text = text.replace(marker, marker + "\n<key>CFBundleExecutable</key><string>$(EXECUTABLE_NAME)</string>")
+                  plist.write_text(text)
           PY
       - name: Increment build number
         script: |
