@@ -2,13 +2,13 @@
 
 An Android keyboard with eight typing sounds, including duck squeaks, a high-pitched dog toy, **Video duck squeak**, **Uwu (video)**, and random selection.
 
-[Download Duck Keys 2.8](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.8.apk)
+[Download Duck Keys 2.9](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-2.9.apk)
 
 Requires Android 8.0 or later. Install, open Duck Keys, then enable and select its keyboard using the setup buttons. Existing users can use **Check for updates now**, then **Install downloaded update**.
 
-## Version 2.8: smoother fast typing
+## Version 2.9: smoother fast typing
 
-Text is still inserted immediately on each key press. To reduce background work while you are typing, dictionary suggestions now wait until a short pause and run at Android's background thread priority. This keeps suggestion searches and redraws from competing with key input when the phone is busy. Autocorrect still applies at word boundaries; suggestions appear after the brief pause.
+Text is inserted immediately on each key press. Word-boundary autocorrect now uses a background-warmed dictionary cache, so a fast space press won't trigger a full correction search on the keyboard thread. During rapid typing, suggestion searches wait longer before updating the suggestion row; they run on a background thread and never queue key presses. This reduces work competing with the keyboard while keeping corrections and suggestions available after a short pause.
 
 ## Version 2.7: independent squeak volume
 
