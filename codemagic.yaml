@@ -23,7 +23,8 @@ workflows:
           python3 - <<'PY'
           import os
           from pathlib import Path
-          project = Path(os.environ["CM_BUILD_DIR"]) / "DuckKeys-iOS" / "DuckKeys.xcodeproj" / "project.pbxproj"
+          root = Path(os.environ["CM_BUILD_DIR"]) / "DuckKeys-iOS"
+          project = root / "DuckKeys.xcodeproj" / "project.pbxproj"
           config_ids = (
               "500000000000000000000021",
               "500000000000000000000022",
@@ -36,6 +37,9 @@ workflows:
                   if line.rstrip().endswith("}"):
                       lines[index] = line + ";"
           project.write_text("\n".join(lines) + "\n")
+          keyboard = root / "DuckKeysKeyboard" / "KeyboardViewController.swift"
+          source = keyboard.read_text()
+          keyboard.write_text(source.replace("key.multipleTouchEnabled = true;", "key.isMultipleTouchEnabled = true;"))
           PY
       - name: Increment build number
         script: |
