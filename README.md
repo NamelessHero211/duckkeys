@@ -134,3 +134,6 @@ Build, package alignment, and APK signatures have been verified. Physical-device
 ## Dictionary attribution
 
 The [English dictionary adaptation](English-dictionary.txt) is filtered from Hermit Dave's [FrequencyWords 2018 English list](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/en/en_50k.txt), derived from OpenSubtitles. The first 16,000 alphabetic entries and contractions were retained with their frequency counts. Source content and this adaptation are licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The attribution and [full dictionary license](Dictionary-LICENSE.txt) are included in the APK and accessible through **Dictionary credits and license** in the app. No endorsement is implied.
+## iOS TestFlight build
+
+The native [iOS Xcode project](https://github.com/NamelessHero211/duckkeys/raw/refs/heads/main/DuckKeys-iOS-Xcode.zip) follows the Android 3.5 keyboard layout and sound controls. iOS keyboard extensions cannot access the microphone; use Apple Dictation. TestFlight builds are uploaded through the configured Codemagic workflow.
